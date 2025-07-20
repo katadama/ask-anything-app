@@ -1,6 +1,6 @@
 # ASK*ANYTHING*
 
-A modern, dark-themed, fully client-side Q&A platform built AI tools and with React, Vite, TypeScript, Tailwind CSS, and shadcn/ui. Users can anonymously post questions, answer, vote, and manage their profile—all data is stored in localStorage.
+A modern, dark-themed, fully client-side Q&A platform built with AI tools and with React, Vite, TypeScript, Tailwind CSS, and shadcn/ui. Users can anonymously post questions, answer, vote, and manage their profile—all data is stored in localStorage.
 
 ## Features
 
