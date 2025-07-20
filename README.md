@@ -1,69 +1,78 @@
-# React + TypeScript + Vite
+# ASK*ANYTHING*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, dark-themed, fully client-side Q&A platform built AI tools and with React, Vite, TypeScript, Tailwind CSS, and shadcn/ui. Users can anonymously post questions, answer, vote, and manage their profile—all data is stored in localStorage.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Anonymous Q&A:** Post and answer questions without registration.
+- **Voting:** Upvote/downvote questions and answers, with glowing visual feedback.
+- **Profile Management:** Change your display name, abandon your profile to start fresh.
+- **Persistence:** All data (users, questions, answers, votes) is stored in localStorage.
+- **Dark Theme:** Modern neon-inspired dark UI using Tailwind and shadcn/ui.
+- **Author Attribution:** Author names are preserved even if a user abandons their profile.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React + Vite** – Fast, modern frontend framework and tooling
+- **TypeScript** – Type safety
+- **Tailwind CSS** – Utility-first styling
+- **shadcn/ui** – Component library for beautiful dark UI
+- **localStorage** – Data persistence (no backend)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+  components/      # UI components (cards, forms, header)
+  pages/           # Main pages (Home, Question, Profile)
+  lib/             # State management, localStorage helpers
+  types/           # TypeScript models
+  assets/          # Static assets
+  App.tsx          # App root
+  main.tsx         # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. Clone the Repository
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <repo-url>
+cd <repo-directory>
 ```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the Development Server
+
+```bash
+npm run dev
+```
+
+- Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Usage
+
+- **Ask a Question:** Use the form on the homepage.
+- **Answer a Question:** Click a question, use the answer form.
+- **Vote:** Click the up/down arrows on questions/answers.
+- **Edit/Delete:** You can edit or delete your own questions/answers.
+- **Profile:** Change your display name or abandon your profile (creates a new anonymous user).
+- **Persistence:** All data is stored in your browser. Use incognito/private mode to simulate a new user.
+
+## Development Notes
+
+- **Data Model:**
+  - User: `{ id, name, votedQuestions, votedAnswers }`
+  - Question: `{ id, text, description, userId, createdAt, votes }`
+  - Answer: `{ id, questionId, text, userId, createdAt, votes }`
+- **Author Attribution:**
+  - The app keeps a list of all users ever created. Author names are preserved for all questions/answers, even if a user abandons their profile.
+- **Dark Theme:**
+  - The app is always in dark mode, styled with Tailwind and shadcn/ui.
+- **LocalStorage:**
+  - To reset all data, clear localStorage in your browser dev tools.
